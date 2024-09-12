@@ -1,16 +1,52 @@
 import { API } from "./js/api.js";
 import { elements } from "./js/helpers.js";
+import { updateTitle, renderPlayingInfo } from "./js/ui.js";
 
 const api = new API();
 
 elements.form.addEventListener("submit", (e) => {
   e.preventDefault();
-  console.log(e);
-  const query = e.target(0).value;
+
+  const query = e.target[0].value;
 
   if (!query) {
     alert("Lütfen bir şarkı adı giriniz");
     return;
   }
+  updateTitle(`${query} İçin Sonuçlar`);
   api.searchMusic(query);
 });
+
+document.addEventListener("DOMContentLoaded", async () => {
+  await api.topPopular();
+});
+
+const playMusic = (url) => {
+  elements.audioSource.src = url;
+
+  elements.audio.load();
+
+  elements.audio.play();
+};
+
+const handleClick = (e) => {
+  if (e.target.id === "play-btn") {
+    const parent = e.target.closest(".card");
+    renderPlayingInfo(parent.dataset);
+    playMusic(parent.dataset.url);
+  }
+};
+
+const animatePhoto = () => {
+  const img = document.querySelector(".info img");
+  img.classList = "animate";
+};
+const stopAnimation = () => {
+  const img = document.querySelector(".info img");
+  img.classList.remove("animate");
+};
+
+document.addEventListener("click", handleClick);
+
+elements.audio.addEventListener("play", animatePhoto);
+elements.audio.addEventListener("pause", stopAnimation);

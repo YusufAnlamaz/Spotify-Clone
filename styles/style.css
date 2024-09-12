@@ -104,6 +104,15 @@ main header form .search-input input {
 main header form .search-input input:focus {
   box-shadow: 0 0 10px rgb(56, 56, 56);
 }
+main header form .search-input button {
+  background-color: black;
+  position: absolute;
+  right: 15px;
+  top: 11px;
+  width: 20px;
+  height: 20px;
+  border: none;
+}
 main header form .search-input i {
   position: absolute;
   right: 15px;
@@ -147,6 +156,101 @@ main header form #menu {
   }
 }
 
+.songs h2 {
+  padding: 10px;
+  cursor: pointer;
+}
+.songs h2:hover {
+  text-decoration: underline;
+}
+.songs .list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 10px;
+}
+.songs .list .card {
+  background: #121212;
+  width: 200px;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 10px;
+  opacity: 0.7;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.songs .list .card:hover {
+  opacity: 1;
+}
+.songs .list .card h4 {
+  margin-bottom: 6px;
+}
+.songs .list .card:hover .play {
+  opacity: 1;
+  bottom: 80px;
+}
+.songs .list .card figure {
+  position: relative;
+}
+.songs .list .card figure img {
+  border-radius: 10px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.songs .list .card figure .play {
+  background-color: #18d860;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  position: absolute;
+  right: 10px;
+  bottom: -20px;
+  transition: 0.4s;
+  opacity: 0;
+}
+.songs .list .card figure .play:hover {
+  scale: 1.2;
+  background: #159845;
+}
+
+.playing {
+  position: fixed;
+  bottom: 0;
+  background: linear-gradient(to right, black, #01703c);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+}
+.playing .info {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.playing .info p {
+  color: #d6eab5;
+  margin-bottom: 5px;
+}
+.playing .info img {
+  width: 90px;
+  border-radius: 50%;
+}
+
+.animate {
+  animation: turn 3s infinite linear;
+}
+
+@keyframes turn {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 * {
   margin: 0;
   padding: 0;
